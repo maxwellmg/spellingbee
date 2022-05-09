@@ -1,14 +1,13 @@
 #word_list = ["butt", "tushie", "behind", "backside"]
 #word_list = ["acdf"]
-word_list = ["abcdefg", "aabbccddeeffgg", "aabccdeefgg", "acdf"]
+word_list = ["abcdefg", "aabbccddeeffgg", "aabccdeefgg", "abcd"]
 #letter_histogram = {'a': 0, 'b': 0, 'c': 0, 'd': 0}
 
 def letter_histogram_counter():
-    #word_histogram = {}
+    seven_unique_letter_words = []
     for word in word_list:
-        letter_histogram = {'a': 0, 'b': 0, 'c': 0, 'd': 0, 'e': 0, 'f': 0, 'g': 0}
+        letter_histogram = {'a': 0, 'b': 0, 'c': 0, 'd': 0, 'e': 0, 'f': 0, 'g': 0, 'h': 0, 'i': 0, 'j': 0, 'k': 0, 'l': 0, 'm': 0, 'n': 0, 'o': 0, 'p': 0, 'q': 0, 'r': 0, 's': 0, 't': 0, 'u': 0, 'v': 0, 'w': 0, 'x': 0, 'y': 0, 'z': 0}
         unique_letter_counter = 0
-        seven_unique_letter_words = []
         for letter in word:
             for key in letter_histogram:
                 if key == letter:
@@ -24,8 +23,8 @@ def letter_histogram_counter():
             else:
                 unique_letter_counter +=1
         if unique_letter_counter == 7:
+            #only issue is that the list resets each time I try to append a new word, otherwise we're there
             seven_unique_letter_words.append(word)
-            print(seven_unique_letter_words)
         else:
             pass
     print(seven_unique_letter_words)
