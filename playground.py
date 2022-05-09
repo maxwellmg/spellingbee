@@ -1,9 +1,7 @@
-data = ["a", "b", "c", "d"]
+f = open("panagram_dictionary.txt", "a")
+f.write(seven_letter_words)
+f.close()
 
-results = []
-print(results)
-
-for x in data:
-    results.append(x)
-
-print(results)
+#open and read the file after the appending:
+f = open("demofile2.txt", "r")
+print(f.read())
