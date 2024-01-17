@@ -1,4 +1,4 @@
-'''Program capable of taking a list of words, crossreferences letters of word with dict with empty values, and temporarily makes histogram of letters contained within that word. Used to determine exact number of unique letters per word'''
+'''Program capable of taking a list of words, crossreferences letters of word with dict with empty values, and temporarily makes histogram of letters contained within that word. Used to determine exact number of unique letters per word and make a "panagram" list'''
 
 
 def panagram_dictionary_creator():
@@ -37,8 +37,3 @@ def panagram_dictionary_creator():
     f.close()
 
 panagram_dictionary_creator()
-
-'''capitals = {"USA":"Washington D.C.", "France":"Paris", "India":"New Delhi"}
-for key in capitals:
-    print("Key = " + key + ", Value = " + capitals[key])'''
-
