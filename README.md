@@ -1,6 +1,8 @@
 # spellingbee
 replicating NYTs spelling bee game just for fun
 
+Game will be capable of being run in Terminal
+
 Utilizing Read Me as a dev log to track tasks needing to be completed, as well as progress
 
 Spelling Bee Description
@@ -25,6 +27,21 @@ Tasks to accomplish
   a. Find a free online dictionary (COMPLETE)
   b. Discern a discreet list of words that contain exactly 7 unique letters
     - create a program that makes histogram for each word (COMPLETE)
-    - run program on dictionary to create list of just panagrams, save as new file
+    - run program on dictionary to create list of just panagrams, save as new file (COMPLETE)
+    - In completing this, we see a new problem: most of these words are rubbish. Need to find a frequency measurer to disclude ridiculous words
+        -Possible solution: find a large text or several large texts. Create find threshhold of frequency for words that would include/disclude word from final list
 2. For each panagram, find a list of words that can only be made from its letters
-3. Figure out UI
+3. Create Print Statements for a Terminal Run-through
+    -Potential print statements:
+        "Randomly selecting a Word"
+        "Randomly picking a letter in that Word"
+        "Curating custom word list"
+        Perhaps a randomly selected loading phrase ["crossing ts, dotting is", "filtering out curse words", etc]
+4. Create a Terminal Help Menu
+    -Potential Menu items
+        -(R): Print rules of the game
+        -(S): See current score
+        -(Q): Quit out of game, lose progress
+        -(H): Exit help menu
+        -(W): See words successfully submitted thus far
+        -Make a toggle for print statements?
