@@ -8,13 +8,8 @@ def generate_game():
     #print("The chosen word is " + chosen_panagram)
     #print("The chosen letter is " + chosen_mandatory_letter)
     return [chosen_panagram, chosen_mandatory_letter]
-#generate_game() = generate_game()
 
-#generate_game()
-generate_game() = generate_game()
-
-#print(generate_game())
-#print(type(generate_game()))
+variables = generate_game()
 
 '''def randomize_letters():
     chosen_panagram = "aabbccddeeffgg"
@@ -35,9 +30,9 @@ randomize_letters()'''
 
 #print(generate_game())
 #def print_letters_in_terminal(chosen_panagram, chosen_mandatory_letter):
-def print_letters_in_terminal(generate_game()):
-    chosen_panagram = generate_game()[0]
-    chosen_mandatory_letter = generate_game()[1]
+def print_letters_in_terminal(variables):
+    chosen_panagram = variables[0]
+    chosen_mandatory_letter = variables[1]
     unique_letters = []
     all_but = chosen_panagram.replace(chosen_mandatory_letter, "")
     #chosen_panagram(0)
@@ -54,4 +49,4 @@ def print_letters_in_terminal(generate_game()):
     letter7 = unique_letters[5]
     print("    " + letter1 + "     " + letter2 + "\n" + letter3 + "     [" + chosen_mandatory_letter + "]     " + letter5 + "\n    " + letter6 + "     " + letter7)
 
-print_letters_in_terminal(generate_game())
+print_letters_in_terminal(variables)
