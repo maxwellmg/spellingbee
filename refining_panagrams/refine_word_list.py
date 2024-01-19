@@ -1,6 +1,6 @@
 import requests
 import time
-from panagram_file_of_lists import panagram_list49
+from panagram_file_of_lists import panagram_list4
 
 def url_creator_checker():
     url_list = []
@@ -10,7 +10,7 @@ def url_creator_checker():
     good_count = 0
     bad_count = 0
 
-    for word in panagram_list49:
+    for word in panagram_list4:
         #url = "https://en.wiktionary.org/wiki/" + str(word)
         url = "https://www.merriam-webster.com/dictionary/" + str(word)
         url_list.append(url)
