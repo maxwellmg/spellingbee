@@ -35,9 +35,9 @@ def wrong_word_eliminator():
         print(word_counter)
         full_dictionary.close()
 
-    f = open("all_words_beta.txt", "a")
+    f = open("all_words_beta_list.txt", "a")
     for word in viable_words:
-        f.write(word + "\n")
+        f.write('"' + word + '", ')
     f.close()
 
 wrong_word_eliminator()
