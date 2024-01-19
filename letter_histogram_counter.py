@@ -31,9 +31,9 @@ def panagram_dictionary_creator():
         print(word_counter)
         full_dictionary.close()
 
-    f = open("panagram_dictionary.txt", "a")
+    f = open("panagram_dictionary2.txt", "a")
     for panagram in panagrams:
-        f.write(panagram + "\n")
+        f.write('"' + panagram + '", ')
     f.close()
 
 panagram_dictionary_creator()
