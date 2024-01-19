@@ -1,6 +1,7 @@
 import requests
 import time
-from panagram_file_of_lists import panagram_list4
+#from panagram_file_of_lists import panagram_list5
+from one_final_file import panagram_list_of_lists
 
 def url_creator_checker():
     url_list = []
@@ -10,10 +11,11 @@ def url_creator_checker():
     good_count = 0
     bad_count = 0
 
-    for word in panagram_list4:
-        #url = "https://en.wiktionary.org/wiki/" + str(word)
-        url = "https://www.merriam-webster.com/dictionary/" + str(word)
-        url_list.append(url)
+    for lis_t in panagram_list_of_lists:
+        for word in lis_t:
+            #url = "https://en.wiktionary.org/wiki/" + str(word)
+            url = "https://www.merriam-webster.com/dictionary/" + str(word)
+            url_list.append(url)
     for url in url_list:
         response = requests.get(url)
         status_code = response.status_code
@@ -36,7 +38,7 @@ def url_creator_checker():
     print("The total number of 404 responses is: " + str(bad_count) + "\n")
 
 #Outfile creation of word lists
-    
+
     with open("checked_panagrams_secondary.txt", "a") as f:
         for word in good_words_list:
             f.write('"' + word + '", ')
