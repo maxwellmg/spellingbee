@@ -11,7 +11,34 @@ def generate_game():
 
 variables = generate_game()
 
-'''def randomize_letters():
+
+def find_all_internal_words(variables)
+
+    # given arguments of chosen panagram and chosen mandatory letter, function finds and returns list of all words that meet criteria
+
+    #import dictionary
+    chosen_panagram = variables[0]
+    chosen_mandatory_letter = variables[1]
+    good_words = []
+    for word in dictionary:
+        current_word = []
+        if chosen_mandatory_letter not in word:
+            #print(word)
+            continue
+        else:
+            for letter in word:
+                if letter not in chosen_panagram:
+                    break
+                else:
+                    current_word.append(letter)
+            if ''.join(current_word) == word:
+                good_words.append(word)
+            else:
+                pass
+    return good_words
+
+
+def randomize_letters():
     chosen_panagram = "aabbccddeeffgg"
     chosen_mandatory_letter = choice(chosen_panagram)
     unique_letters = []
@@ -22,11 +49,10 @@ variables = generate_game()
             pass
         else:
             unique_letters.append(letter)
-    print(unique_letters)
     shuffle(unique_letters)
-    print(unique_letters)
+    #print(unique_letters)
 
-randomize_letters()'''
+#randomize_letters()
 
 #print(generate_game())
 #def print_letters_in_terminal(chosen_panagram, chosen_mandatory_letter):
