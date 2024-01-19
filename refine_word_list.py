@@ -1,6 +1,6 @@
 import requests
 import time
-from panagram_list import panagram_list1
+from panagram_file_of_lists import panagram_list1
 
 def url_creator_checker():
     url_list = []
