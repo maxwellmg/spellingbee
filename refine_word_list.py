@@ -1,6 +1,6 @@
 import requests
 import time
-from panagram_file_of_lists import panagram_list1
+from panagram_file_of_lists import panagram_list49
 
 def url_creator_checker():
     url_list = []
@@ -10,7 +10,7 @@ def url_creator_checker():
     good_count = 0
     bad_count = 0
 
-    for word in panagram_list1:
+    for word in panagram_list49:
         #url = "https://en.wiktionary.org/wiki/" + str(word)
         url = "https://www.merriam-webster.com/dictionary/" + str(word)
         url_list.append(url)
@@ -37,9 +37,9 @@ def url_creator_checker():
 
 #Outfile creation of word lists
     
-    with open("checked_panagrams.txt", "a") as f:
+    with open("checked_panagrams_secondary.txt", "a") as f:
         for word in good_words_list:
-            g.write('"' + word + '", ')
+            f.write('"' + word + '", ')
     f.close()
 
 url_creator_checker()
