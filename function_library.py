@@ -1,18 +1,21 @@
 from random import choice, shuffle
+from all_words_beta_list import all_words_beta_list as dictionary
+from refining_panagrams.checked_panagrams_main import mwd_checked_panagrams
 
-sample_list = ["aabbccddeeffgg", "hhiijjkkllmmnn", "ooppqqrrssttuu"]
+#sample_list = ["aabbccddeeffgg", "hhiijjkkllmmnn", "ooppqqrrssttuu"]
 
 def generate_game():
-    chosen_panagram = choice(sample_list)
+    chosen_panagram = choice(mwd_checked_panagrams)
     chosen_mandatory_letter = choice(chosen_panagram)
     #print("The chosen word is " + chosen_panagram)
     #print("The chosen letter is " + chosen_mandatory_letter)
+    print(chosen_panagram + "\n" + chosen_mandatory_letter)
     return [chosen_panagram, chosen_mandatory_letter]
 
-variables = generate_game()
+#variables = generate_game()
 
 
-def find_all_internal_words(variables)
+def find_all_internal_words(variables):
 
     # given arguments of chosen panagram and chosen mandatory letter, function finds and returns list of all words that meet criteria
 
@@ -38,9 +41,9 @@ def find_all_internal_words(variables)
     return good_words
 
 
-def randomize_letters():
-    chosen_panagram = "aabbccddeeffgg"
-    chosen_mandatory_letter = choice(chosen_panagram)
+def randomize_letters(variables):
+    #chosen_panagram = "aabbccddeeffgg"
+    #chosen_mandatory_letter = choice(chosen_panagram)
     unique_letters = []
     all_but = chosen_panagram.replace(chosen_mandatory_letter, "")
     #chosen_panagram(0)
@@ -75,4 +78,4 @@ def print_letters_in_terminal(variables):
     letter7 = unique_letters[5]
     print("    " + letter1 + "     " + letter2 + "\n" + letter3 + "     [" + chosen_mandatory_letter + "]     " + letter5 + "\n    " + letter6 + "     " + letter7)
 
-print_letters_in_terminal(variables)
+#print_letters_in_terminal(variables)
