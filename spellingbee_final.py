@@ -1,15 +1,14 @@
-#from refining_panagrams.checked_panagrams_main import mwd_checked_panagrams
-#from all_words_beta_list import all_words_beta_list as dictionary
-from function_library import generate_game, find_all_internal_words, randomize_letters, print_letters_in_terminal
-#from random import choice, shuffle
+import time
+from function_library import generate_game, find_all_internal_words, randomize_letters, find_game_letters
 
-print("Welcome to the Spelling Bee! Hope you enjoy.")
-#"Press (H) if you need help"
+print("\n + ~~~~~~~~~~~~~~~~~~~~~ + \n |  Python Spelling Bee  | \n + ~~~~~~~~~~~~~~~~~~~~~ + \n ")
+time.sleep(1)
+print("Input (H) to see the help menu")
 
-#chosen_panagram = choice(mwd_checked_panagrams)
-#chosen_mandatory_letter = choice(chosen_panagram)
+'''
 variables = generate_game()
-#variables = [chosen_panagram, chosen_mandatory_letter]
 find_all_internal_words(variables)
-print_letters_in_terminal(variables)
-if input
+unique_letters = find_game_letters(variables)
+randomize_letters(variables, unique_letters)
+#if input
+'''
