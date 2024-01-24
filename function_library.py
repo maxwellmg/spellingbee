@@ -2,11 +2,9 @@ from random import choice, shuffle
 from all_words_beta_list import all_words_beta_list as dictionary
 from refining_panagrams.checked_panagrams_main import mwd_checked_panagrams
 
-#sample_list = ["aabbccddeeffgg", "hhiijjkkllmmnn", "ooppqqrrssttuu"]
-
 def generate_game():
-    chosen_panagram = choice(mwd_checked_panagrams).upper()
-    chosen_mandatory_letter = choice(chosen_panagram).upper()
+    chosen_panagram = choice(mwd_checked_panagrams)
+    chosen_mandatory_letter = choice(chosen_panagram)
     print(chosen_panagram + "\n" + chosen_mandatory_letter)
     return [chosen_panagram, chosen_mandatory_letter]
 
@@ -63,39 +61,40 @@ def points_system(new_word):
             unique_letters.append(letter)
     if len(unique_letters) == 7:
         points = len(new_word) + 10
-        print("PANAGRAM +" + str(points))
-    elif len(new_word) == 4:
-        points = 1
-        print("+" + str(points))
+        return_statement = "PANAGRAM +" + str(points)
     else:
-        points = len(new_word)
-        ("+" + str(points))
-    return points
+        if len(new_word) == 4:
+            points = 1
+        else:
+            points = len(new_word)
+        return_statement = "+" + str(points)
+    return [points, return_statement]
 
-def guess_checker(new_word, variables, found_words, good_words):
+def guess_checker(new_word, variables, words_found, good_words):
     new_word = new_word.upper()
     chosen_panagram = variables[0]
     chosen_mandatory_letter = variables[1]
     for letter in new_word:
         if letter not in chosen_panagram:
-            print("Contains non-viable letter (" + letter.upper() + ")")
+            print("\nContains non-viable letter (" + letter.upper() + ")\n")
             return None
             #break
         else:
             pass
     if len(new_word) < 4:
-        print("Too Short!")
+        print("\nToo Short!\n")
         return None
     elif chosen_mandatory_letter not in new_word:
-        print("Missing middle letter!")
+        print("\nMissing middle letter!\n")
         return None
-    elif new_word in found_words:
-        print(new_word + "has already been found!")
+    elif new_word in words_found:
+        print("\n" + new_word + " has already been found!\n")
         return None    
     else:
-        if new_word.lower() in good_words:
-            good_words.remove(new_word)
-            new_points = points_system(new_word)
+        if new_word in good_words:
+            new_points = points_system(new_word)[0]
+            return_statement = points_system(new_word)[1]
             return new_points
+            #return new_points, return_statement
         else:
             print(new_word + " not in word list.")
