@@ -19,13 +19,20 @@ while True:
     print("Words Found: " + str(count_words_found) + "\t Score: " + str(score))
     print_letters(variables, unique_letters)
     new_word = input("Your guess: ")
-    guess_checker(new_word, variables, words_found, good_words)
+    #guess_checker(new_word, variables, words_found, good_words)
     if guess_checker(new_word, variables, words_found, good_words) == None:
         continue
     else:
-        words_found.append(new_word)
-        score += new_points
+        changes = guess_checker(new_word, variables, words_found, good_words)
+        words_found.append(new_word.upper())
+        #print(words_found)
+        #print(type(changes[0]))
+        #print(changes[0])
+        #print(type(int(changes[0])))
+        score += int(changes)
+        #print(changes[1])
+        good_words.remove(new_word.upper())
         count_words_found += 1
+        
+        
 
-#randomize_letters(variables, unique_letters)
-#if input
