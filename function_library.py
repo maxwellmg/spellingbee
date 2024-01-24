@@ -50,7 +50,7 @@ def find_game_letters(variables):
 
 def print_letters(variables, unique_letters):
     chosen_mandatory_letter = variables[1]
-    print("    " + unique_letters[0] + "     " + unique_letters[1] + "\n" + unique_letters[2] + "     [" + chosen_mandatory_letter + "]     " + unique_letters[3] + "\n    " + unique_letters[4] + "     " + unique_letters[5])
+    print("    " + unique_letters[0] + "     " + unique_letters[1] + "\n" + unique_letters[2] + "     [" + chosen_mandatory_letter + "]     " + unique_letters[3] + "\n    " + unique_letters[4] + "     " + unique_letters[5] + "\n")
 
 def points_system(new_word):
     unique_letters = []
@@ -60,14 +60,14 @@ def points_system(new_word):
         else:
             unique_letters.append(letter)
     if len(unique_letters) == 7:
-        points = len(new_word) + 10
-        return_statement = "PANAGRAM +" + str(points)
+        points = str(len(new_word) + 7)
+        return_statement = "PANAGRAM +" + points + "\n"
     else:
         if len(new_word) == 4:
-            points = 1
+            points = "1"
         else:
-            points = len(new_word)
-        return_statement = "+" + str(points)
+            points = str(len(new_word))
+        return_statement = "+" + points + "\n"
     return [points, return_statement]
 
 def guess_checker(new_word, variables, words_found, good_words):
@@ -82,19 +82,23 @@ def guess_checker(new_word, variables, words_found, good_words):
         else:
             pass
     if len(new_word) < 4:
-        print("\nToo Short!\n")
+        print("\nToo Short\n")
         return None
     elif chosen_mandatory_letter not in new_word:
-        print("\nMissing middle letter!\n")
+        print("\nMissing middle letter\n")
         return None
     elif new_word in words_found:
-        print("\n" + new_word + " has already been found!\n")
+        print("\n" + new_word + " has already been found\n")
         return None    
     else:
         if new_word in good_words:
             new_points = points_system(new_word)[0]
+            #print(type(new_points))
+            #print(str(new_points))
             return_statement = points_system(new_word)[1]
-            return new_points
+            return [new_points, return_statement]
             #return new_points, return_statement
         else:
             print(new_word + " not in word list.")
+
+#def ranking_finder(good_words, variables)
