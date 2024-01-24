@@ -24,26 +24,53 @@ for word in sample_dictionary:
             good_words.append(word)
         else:
             pass'''
+from all_words_beta_list import all_words_beta_list as dictionary
+from refining_panagrams.checked_panagrams_main import mwd_checked_panagrams as panagrams
+from random import choice, shuffle
+'''
+def generate_game():
+    chosen_panagram = choice(mwd_checked_panagrams).upper()
+    chosen_mandatory_letter = choice(chosen_panagram).upper()
+    print(chosen_panagram + "\n" + chosen_mandatory_letter)
+    return [chosen_panagram, chosen_mandatory_letter]
 
+variables = generate_game()
 #break first
-good_words = []
-for word in sample_dictionary:
-    current_word = []
-    if sample_chosen_letter not in word:
-        #print(word)
-        continue
-    else:
-        for letter in word:
-            if letter not in sample_panagram:
-                #print(letter + " is in " + sample_panagram)
-                break
-            else:
-                #print(letter + " is not in " + sample_panagram)
-                current_word.append(letter)
-        if ''.join(current_word) == word:
-            good_words.append(word)
+def find_all_internal_words(variables):
+    chosen_panagram = variables[0]
+    chosen_mandatory_letter = variables[1]
+    good_words = []
+    for word in dictionary:
+        current_word = []
+        if chosen_mandatory_letter in word:
+            print(word)
+            print(chosen_mandatory_letter)
+            continue
         else:
-            pass
+            #print(chosen_mandatory_letter)
+            #print(word)
+            for letter in word:
+                if letter not in chosen_panagram:
+                    #print(letter + " is in " + sample_panagram)
+                    break
+                else:
+                    #print(letter + " is not in " + sample_panagram)
+                    current_word.append(letter)
+            if ''.join(current_word) == word:
+                print(word)
+                good_words.append(word)
+            else:
+                pass
+    #print(good_words)
 #return good_words
 
-print(good_words)
+find_all_internal_words(variables)'''
+capped = []
+
+for word in panagrams:
+    capped.append(word.upper())
+
+f = open ("capped_panagrams.py", "a")
+for word in capped:
+    f.write('"' + word + '", ')
+f.close()
