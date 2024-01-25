@@ -3,7 +3,7 @@ from function_library import generate_game, find_all_internal_words, randomize_l
 
 print("\n + ~~~~~~~~~~~~~~~~~~~~~ + \n |  Python Spelling Bee  | \n + ~~~~~~~~~~~~~~~~~~~~~ + \n ")
 time.sleep(1)
-print("Input -h to see the help menu")
+#print("Input -h to see the help menu")
 
 words_found = []
 count_words_found = 0
