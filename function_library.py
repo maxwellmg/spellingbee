@@ -39,25 +39,6 @@ def find_all_internal_words(variables):
                 pass
     return good_words
 
-def randomize_letters(variables, unique_letters):
-    chosen_mandatory_letter = variables[1]
-    shuffle(unique_letters)
-    print("    " + unique_letters[0] + "     " + unique_letters[1] + "\n" + unique_letters[2] + "     [" + chosen_mandatory_letter + "]     " + unique_letters[3] + "\n    " + unique_letters[4] + "     " + unique_letters[5])
-
-'''def find_game_letters(variables):
-    chosen_panagram = variables[0]
-    chosen_mandatory_letter = variables[1]
-    unique_letters = []
-    all_but = chosen_panagram.replace(chosen_mandatory_letter, "")
-    for letter in all_but:
-        if letter in unique_letters:
-            pass
-        else:
-            unique_letters.append(letter)
-    shuffle(unique_letters)
-    print("    " + unique_letters[0] + "     " + unique_letters[1] + "\n" + unique_letters[2] + "     [" + chosen_mandatory_letter + "]     " + unique_letters[3] + "\n    " + unique_letters[4] + "     " + unique_letters[5])
-    return unique_letters'''
-
 def print_letters(variables):
     chosen_mandatory_letter = variables[1]
     unique_letters = variables[2]
@@ -85,29 +66,34 @@ def guess_checker(new_word, variables, words_found, good_words):
     new_word = new_word.upper()
     chosen_panagram = variables[0]
     chosen_mandatory_letter = variables[1]
-    for letter in new_word:
-        if letter not in chosen_panagram:
-            print("\nContains non-viable letter (" + letter.upper() + ")\n")
+    unique_letters = variables[2]
+    if new_word == "-SHUFFLE":
+        shuffle(unique_letters)
+        print("\n")
+    else:    
+        for letter in new_word:
+            if letter not in chosen_panagram:
+                print("\nContains non-viable letter (" + letter.upper() + ")\n")
+                return None
+                #break
+            else:
+                pass
+        if len(new_word) < 4:
+            print("\nToo Short\n")
             return None
-            #break
+        elif chosen_mandatory_letter not in new_word:
+            print("\nMissing middle letter\n")
+            return None
+        elif new_word in words_found:
+            print("\n" + new_word + " has already been found\n")
+            return None    
         else:
-            pass
-    if len(new_word) < 4:
-        print("\nToo Short\n")
-        return None
-    elif chosen_mandatory_letter not in new_word:
-        print("\nMissing middle letter\n")
-        return None
-    elif new_word in words_found:
-        print("\n" + new_word + " has already been found\n")
-        return None    
-    else:
-        if new_word in good_words:
-            new_points = points_system(new_word)[0]
-            return_statement = points_system(new_word)[1]
-            return [new_points, return_statement]
-        else:
-            print("\n" + new_word + " not in word list\n")
+            if new_word in good_words:
+                new_points = points_system(new_word)[0]
+                return_statement = points_system(new_word)[1]
+                return [new_points, return_statement]
+            else:
+                print("\n" + new_word + " not in word list\n")
 
 def ranking_finder(good_words):
     #needs to find total number of points available per round (see panagrams, normal words)
@@ -127,7 +113,6 @@ def ranking_assessor(highest_possible_score, current_score):
         ranking = "N/A"
     else:
         percent = (current / total) * 100
-        print(str(percent))
         if percent <= 1:
             ranking = "Born Yesterday"
         elif (percent > 1 and percent <= 3):
@@ -145,3 +130,7 @@ def ranking_assessor(highest_possible_score, current_score):
         else:
             ranking = "JACK OF ALL TRADES, MASTER OF ALL TRADES. No More words go home."
     return ranking
+
+def loading_menu_prompt():
+    possible_statements = ['(Not) picking my nose...', 'Thinking about the meaning of life...', 'Am I getting hungry?...', 'Watching paint dry...', "What's that smell?...", 'Downloading malware (jk)...', 'Converting meters to inches...', 'Descaling the Keurig...', 'Fetching the newspaper...']
+    return(choice(possible_statements) + "\n")
