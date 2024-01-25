@@ -1,5 +1,5 @@
 import time
-from function_library import generate_game, find_all_internal_words, ranking_finder, randomize_letters, print_letters, guess_checker, ranking_assessor
+from function_library import generate_game, find_all_internal_words, loading_menu_prompt, print_letters, guess_checker, ranking_finder, ranking_assessor
 
 print("\n + ~~~~~~~~~~~~~~~~~~~~~ + \n |  Python Spelling Bee  | \n + ~~~~~~~~~~~~~~~~~~~~~ + \n ")
 time.sleep(1)
@@ -10,15 +10,20 @@ words_found = []
 count_words_found = 0
 score = 0
 
-#variables = [chosen panagram, chosen_mandatory_letter, unique_letters]
 variables = generate_game()
+print("Picking a Panagram...\n")
+time.sleep(1)
 
 good_words = find_all_internal_words(variables)
+print("Finding all viable words...\n")
+time.sleep(1)
+
+print(loading_menu_prompt())
+time.sleep(1)
 
 highest_possible_score = ranking_finder(good_words)
-
-#unique_letters = find_game_letters(variables)
-# ^ possibly not necessary anymore
+print("Generating scoring system...\n")
+time.sleep(1)
 
 while True:
     ranking = ranking_assessor(highest_possible_score, score)
