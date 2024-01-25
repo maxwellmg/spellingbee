@@ -5,8 +5,8 @@ from refining_panagrams.checked_panagrams_main import mwd_checked_panagrams
 def generate_game():
     chosen_panagram = choice(mwd_checked_panagrams)
     chosen_mandatory_letter = choice(chosen_panagram)
-    return [chosen_panagram, chosen_mandatory_letter]
     #print(chosen_panagram + "\n" + chosen_mandatory_letter)
+    return [chosen_panagram, chosen_mandatory_letter]
 
 # given arguments of chosen panagram and chosen mandatory letter, function finds and returns list of all words that meet criteria
 def find_all_internal_words(variables):
