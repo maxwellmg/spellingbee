@@ -42,7 +42,7 @@ def find_all_internal_words(variables):
 def print_letters(variables):
     chosen_mandatory_letter = variables[1]
     unique_letters = variables[2]
-    print("    " + unique_letters[0] + "     " + unique_letters[1] + "\n" + unique_letters[2] + "     [" + chosen_mandatory_letter + "]     " + unique_letters[3] + "\n    " + unique_letters[4] + "     " + unique_letters[5] + "\n")
+    print("    " + unique_letters[0] + "     " + unique_letters[1] + "\n\n" + unique_letters[2] + "     [" + chosen_mandatory_letter + "]     " + unique_letters[3] + "\n\n    " + unique_letters[4] + "     " + unique_letters[5] + "\n")
 
 def points_system(new_word):
     new_word_unique_letters = []

@@ -18,7 +18,7 @@ def url_creator_checker():
         url = "https://www.merriam-webster.com/dictionary/" + str(word)
         url_list.append(url)
     for url in url_list:
-        if total_count == 100000:
+        if total_count == 20000:
             break
         else:
             response = requests.get(url)
@@ -44,7 +44,7 @@ def url_creator_checker():
 
 #Outfile creation of word lists
 
-    with open("checked_dictionary.txt", "a") as f:
+    with open("starting_with_utch.txt", "a") as f:
         for word in good_words_list:
             f.write('"' + word + '", ')
     f.close()
