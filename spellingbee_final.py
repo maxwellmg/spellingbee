@@ -1,5 +1,5 @@
 import time
-from function_library import generate_game, find_all_internal_words, loading_menu_prompt, print_letters, guess_checker, ranking_finder, ranking_assessor
+from function_library import generate_game, find_all_internal_words, loading_menu_prompt, print_letters, guess_checker, ranking_finder, ranking_assessor, print_recent_inputted_words
 
 print("\n + ~~~~~~~~~~~~~~~~~~~~~ + \n |  Python Spelling Bee  | \n + ~~~~~~~~~~~~~~~~~~~~~ + \n ")
 time.sleep(1)
@@ -27,7 +27,8 @@ time.sleep(1)
 
 while True:
     ranking = ranking_assessor(highest_possible_score, score)
-    print("Words Found: " + str(count_words_found) + "\t Score: " + str(score) + "\t Ranking: " + ranking + "\n")
+    recent_word_list = print_recent_inputted_words(words_found)
+    print("Words Found: " + str(count_words_found) + "\t Score: " + str(score) + "\t Ranking: " + ranking + "\n\n" + recent_word_list + "\n")
     #print_letters(variables, unique_letters)
     print_letters(variables)
     new_word = input("Your guess: ")
@@ -37,6 +38,7 @@ while True:
     else:
         changes = guess_checker(new_word, variables, words_found, good_words)
         words_found.append(new_word.upper())
+        #print(words_found)
         good_words.remove(new_word.upper())
         new_points = changes[0]
         score += int(new_points)
