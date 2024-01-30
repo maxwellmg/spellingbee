@@ -1,6 +1,8 @@
 from random import choice, shuffle
-from all_words_beta_list import all_words_beta_list as dictionary
+from all_words_gamma_list import all_words_gamma_list as dictionary
 from refining_panagrams.checked_panagrams_main import mwd_checked_panagrams
+
+# generate_game() randomly selects a panagram, a mandatory letter within that panagram, and a list of unique letters within the word
 
 def generate_game():
     chosen_panagram = choice(mwd_checked_panagrams)
@@ -14,11 +16,10 @@ def generate_game():
         else:
             unique_letters.append(letter)
     shuffle(unique_letters)
-    #print("    " + unique_letters[0] + "     " + unique_letters[1] + "\n" + unique_letters[2] + "     [" + chosen_mandatory_letter + "]     " + unique_letters[3] + "\n    " + unique_letters[4] + "     " + unique_letters[5])
-    #return unique_letters
     return [chosen_panagram, chosen_mandatory_letter, unique_letters]
 
-# given arguments of chosen panagram and chosen mandatory letter, function finds and returns list of all words that meet criteria
+# find_all_internal_words takes arguments of the chosen panagram and chosen mandatory letter and it finds and returns a list of all words that meet criteria
+
 def find_all_internal_words(variables):
     chosen_panagram = variables[0]
     chosen_mandatory_letter = variables[1]
@@ -39,10 +40,14 @@ def find_all_internal_words(variables):
                 pass
     return good_words
 
+# print_letters creates the print statement for the unique letters of the panagram
+
 def print_letters(variables):
     chosen_mandatory_letter = variables[1]
     unique_letters = variables[2]
     print("    " + unique_letters[0] + "     " + unique_letters[1] + "\n\n" + unique_letters[2] + "     [" + chosen_mandatory_letter + "]     " + unique_letters[3] + "\n\n    " + unique_letters[4] + "     " + unique_letters[5] + "\n")
+
+# points_system takes the argument of a new valid word and determines its value and corresponding print statement
 
 def points_system(new_word):
     new_word_unique_letters = []
@@ -61,6 +66,8 @@ def points_system(new_word):
             points = str(len(new_word))
         return_statement = "\n"+ new_word + " +" + points + "\n"
     return [points, return_statement]
+
+# guess_checker checks validity of the new inputted word from the user. it returns None if there is an error with the word (i.e. too short, already inputted, contains non-viable letters, etc.) or it sends the word to the points_system function if its a good word.
 
 def guess_checker(new_word, variables, words_found, good_words):
     new_word = new_word.upper()
@@ -95,6 +102,8 @@ def guess_checker(new_word, variables, words_found, good_words):
             else:
                 print("\n" + new_word + " not in word list\n")
 
+# ranking_finder takes the argument of the good word list and finds the highest possible score for the round
+
 def ranking_finder(good_words):
     #needs to find total number of points available per round (see panagrams, normal words)
     highest_possible_score = 0
@@ -102,6 +111,8 @@ def ranking_finder(good_words):
         int_points = int(points_system(word)[0])
         highest_possible_score += int_points
     return highest_possible_score
+
+# ranking_assessor factors in the current user score with the highest possible score for the round to find consistent ranks. Rank based on current points as a percent of the total
 
 def ranking_assessor(highest_possible_score, current_score):
     #establish percentages for ranking, have ranking titles
@@ -131,9 +142,13 @@ def ranking_assessor(highest_possible_score, current_score):
             ranking = "JACK OF ALL TRADES, MASTER OF ALL TRADES. No More words go home."
     return ranking
 
+# loading_menu_prompt picks a random print statement for the opening sequence to improve overall user experience
+
 def loading_menu_prompt():
     possible_statements = ['(Not) picking my nose...', 'Thinking about the meaning of life...', 'Am I getting hungry?...', 'Watching paint dry...', "What's that smell?...", 'Downloading malware (jk)...', 'Converting meters to inches...', 'Descaling the Keurig...', 'Fetching the newspaper...']
     return(choice(possible_statements) + "\n")
+
+# print_recent_inputted_words outputs a short list of inputted words in reverse chronological order
 
 def print_recent_inputted_words(words_found):
     printed_list = []
