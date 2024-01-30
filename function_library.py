@@ -134,3 +134,15 @@ def ranking_assessor(highest_possible_score, current_score):
 def loading_menu_prompt():
     possible_statements = ['(Not) picking my nose...', 'Thinking about the meaning of life...', 'Am I getting hungry?...', 'Watching paint dry...', "What's that smell?...", 'Downloading malware (jk)...', 'Converting meters to inches...', 'Descaling the Keurig...', 'Fetching the newspaper...']
     return(choice(possible_statements) + "\n")
+
+def print_recent_inputted_words(words_found):
+    printed_list = []
+    if words_found == []:
+        return "[Recently found words here]"
+    else:
+        for word in reversed(words_found):
+            if len(", ".join(printed_list)) < 50:
+                printed_list.append(word)
+            else:
+                return "[" + ", ".join(printed_list) + "...]"
+        return "[" + ", ".join(printed_list) + "]"
