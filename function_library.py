@@ -260,14 +260,14 @@ def help_rules():
     time.sleep(1)
 
 def help_tiers():
-    print("\nTiers")
+    print("\nTiers\n")
     time.sleep(1)
 
 def help_words_list(words_found):
     print("\nWords List\n")
     time.sleep(1)
     if words_found == []:
-        print("You haven't entered any successful words yet")
+        print("You haven't entered any successful words yet\n")
         time.sleep(1)
     else:
         sorted_list = sorted(words_found)
