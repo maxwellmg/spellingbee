@@ -4,39 +4,48 @@ from all_words_gamma_list import all_words_gamma_list as dictionary
 from refining_panagrams.checked_panagrams_main import mwd_checked_panagrams
 from savefile import save_dict_list
 
+# check_save_file checks if a previous game was saved in an outfile, and prompts the user to either start a new game or continue a previous run (and allows for unlimited save spots)
+
 def check_save_file():
     if save_dict_list == {}:
         return None
     else:
-        if len(save_dict_list) == 1:
-            save_input = str(input("There is a save file from your last play. Would you like to Continue or Start a New Game?\n\n1: Continue Game\n2: Start New Game\n\n"))
-        else:
-            save_input = str(input("There are multiple save files from previous plays. Would you like to Continue a Game or Start a New Game?\n\n1: Continue Game\n2: Start New Game\n\n"))
-    while True:
-        if save_input == "1":
-            count = 1
-            for save in save_dict_list:
-                print("\nSave Slot #" + str(count) + "\n")
-                for keys, values in save.items():
-                    print(keys + ":", values)
-                count += 1
-            while True:
-                user_choice = int(input("Which save state do you want to resume?\n"))
-                if type(user_choice) == int:    
-                    if (int(user_choice) > 0) and (int(user_choice)<= len(save_dict_list)):
-                        choice = save_dict_list[user_choice - 1]
-                        save_state = list(choice.values())
-                        return(save_state)
-                    else:
+        while True:
+            if len(save_dict_list) == 1:
+                save_input = str(input("There is a save file from your last play. Would you like to Continue or Start a New Game?\n\n1: Continue Game\n2: Start New Game\n\n"))
+            else:
+                save_input = str(input("There are multiple save files from previous plays. Would you like to Continue a Game or Start a New Game?\n\n1: Continue Game\n2: Start New Game\n\n"))
+            if save_input == "1":
+                count = 1
+                for save in save_dict_list:
+                    print("\nSave Slot #" + str(count) + "\n")
+                    for keys, values in save.items():
+                        print(keys + ":", values)
+                    count += 1
+                while True:
+                    try:
+                        user_choice = int(input("Which save state do you want to resume?\n"))
+                        #type(user_choice) == int:
+                        if (int(user_choice) > 0) and (int(user_choice)<= len(save_dict_list)):
+                            choice = save_dict_list[user_choice - 1]
+                            save_state = list(choice.values())
+                            return(save_state)
+                        else:
+                            print("Please enter a valid number")
+                            continue
+                    except ValueError:
                         print("Please enter a valid number")
-                else:
-                    print("Please enter a valid number")
-        elif save_input == "2":
-            return None
-        else:
-            print("Please select either Continue or New Game")
+                        continue
+                    '''else:
+                        print("Please enter a valid number")'''
+            elif save_input == "2":
+                print("\n")
+                return None
+            else:
+                print("\nPlease select either Continue or New Game")
+                continue
 
-# generate_game() randomly selects a panagram, a mandatory letter within that panagram, and a list of unique letters within the word
+# generate_game randomly selects a panagram, a mandatory letter within that panagram, and a list of unique letters within the word
 
 def generate_game():
     chosen_panagram = choice(mwd_checked_panagrams)
@@ -138,6 +147,8 @@ def guess_checker(new_word, variables, words_found, good_words, score, highest_p
                 return [new_points, return_statement]
             else:
                 print("\n" + new_word + " not in word list\n")
+
+#help_menu allows the user to use "-" commands look up rules, tiers, words_entered, and shuffle, or to break out of the normal guess_checker function into the help menu and complete those same functions
 
 def help_menu(new_word, words_found, unique_letters, score, highest_possible_score, good_words, ranking_variables):
     ranking = ranking_variables[0]
@@ -254,6 +265,8 @@ def print_recent_inputted_words(words_found):
                 return "[" + ", ".join(printed_list) + "...]"
         return "[" + ", ".join(printed_list) + "]"
 
+# quitting_prompt takes user through options for quitting the game, allowing for mistaken quits to be avoided and for all answers to be revealed
+
 def quitting_prompt(words_found, score, highest_possible_score, good_words, ranking):
     while True:
         quitting_input = input("\nAre You Sure You Want to Quit? (Y/N)\n\n")
@@ -281,6 +294,8 @@ def quitting_prompt(words_found, score, highest_possible_score, good_words, rank
             print('\nChoice not recognized. Please enter either "yes" or "no":')
             time.sleep(1)
 
+# closing_printout takes users inputs for the quitting_prompt and delivers a custom closing message based on users' decisions
+
 def closing_printout(words_found, score, highest_possible_score, good_words, choice, ranking):
     print("\nWords Found:\n\n" + str(words_found))
     time.sleep(2)
@@ -299,11 +314,15 @@ def closing_printout(words_found, score, highest_possible_score, good_words, cho
         print("\nGoodbye! See you soon\n")
         return "quit"
 
+# help_rules prints the rules of how to play the game
+
 def help_rules():
     print("\nGameplay:\n\nThe user is provided 7 different letters, one of which is a [mandatory letter].\nThe user tries to find as many unique words as possible with the letters given\nso long as they all contain the one mandatory letter. Points are assessed based\non word length, and the user tries to obtain as many points as possible,\nachieving different acolades depending on how many points have been acquired.\nEvery game has at least one 'panagram', or word that contains all 7 letters.\n")
     time.sleep(1)
     print("Spelling Bee Rules\n\n1. There is at least 1 panagram per game\n2. Words must be at least 4 letters in length\n3. Words cannot be counted more than once\n4. Words must contain mandatory letter\n5. Point System:\n\t4-letters = 1pt\n\t5-letters = 5pt\n\t6-letters = 6pt\n\t...etc.\n\tPanagram = 7 additional points\n6. Player ranking determined by points gained vs. total points possible\n")
     time.sleep(1)
+
+# help_tiers prints the tier rankings and their run-specific values
 
 def help_tiers(rank_marker_list, rankings):
     print("\nScore Tiers\n")
@@ -315,6 +334,8 @@ def help_tiers(rank_marker_list, rankings):
         count += 1
     print('\n')
 
+# help_words_list prints words_found in alphabetical order
+
 def help_words_list(words_found):
     print("\nWords List\n")
     time.sleep(1)
@@ -325,6 +346,8 @@ def help_words_list(words_found):
         sorted_list = sorted(words_found)
         print(str(sorted_list) + "\n")
         time.sleep(1)
+
+# help_shuffle shuffles letters around
 
 def help_shuffle(unique_letters):
     shuffle(unique_letters)
