@@ -99,10 +99,190 @@ elif percent > 33 and <= 100:
 else:
     ranking = "JACK OF ALL TRADES, MASTER OF ALL TRADES. No More words go home."
 
-'''
+
 from all_words_beta_list import all_words_beta_list
 
 count = 0
 for word in all_words_beta_list:
     count += 1
+print(count)'''
+
+#word_list = ["A", "B", "C", "D"]
+word_list = ["adaptably", "adaptation", "adaptative", "adapted", "adaptedness", "adapter", "adapters"]
+
+'''printed_list = []
+for word in reversed(word_list):
+    if len(", ".join(printed_list)) < 50:
+        print(len(", ".join(printed_list)))
+        printed_list.append(word)
+        print(printed_list)
+    else:
+        print("[" + ", ".join(printed_list) + "...]")
+        break
+
+def print_recent_inputted_words(word_list):
+    #word_list = word_list
+    printed_list = []
+    if word_list == []:
+        return "[Recently found words here]"
+    else:
+        #return "[" + ", ".join(word_list) + "]"
+        for word in reversed(word_list):
+            if len(", ".join(printed_list)) < 50:
+                print("hit here")
+                printed_list.append(word)
+            else:
+                print("no, hit here")
+                return "[" + ", ".join(printed_list) + "...]"
+        return "[" + ", ".join(printed_list) + "]"
+
+print(print_recent_inputted_words(word_list))'''
+#inverted_word_list = word_list.reverse()
+#print(word_list)
+#print(inverted_word_list)
+
+#new_word = "no"
+'''new_word = "-yep"
+if new_word.startswith("-") == True:
+    print("yep")
+else:
+    print("nope")
+
+new_word = "-h"
+def menu(new_word, words_found):
+    #potential inputs: words found, tiers (new)
+    beginning_input = None
+    while beginning_input != "-e":
+        beginning_input = input("Help menu: \n-e: exit back to game\n-s: shuffle letters (and exit help menu)\n-r: see rules\n-t: see tier rankings\n-w: see all successful input words\n-q: quit game\n")
+        if beginning_input == "-e":
+            print("exiting help menu")
+        elif (beginning_input == "-s") or (beginning_input == "-SHUFFLE"):
+            #shuffle(unique_letters)
+            #print("\n")
+            print("shuffle")
+        elif beginning_input == "-r":
+            print("\nGameplay:\n\nThe user is provided 7 different letters, one of which is a [mandatory letter].\nThe user tries to find as many unique words as possible with the letters given\nso long as they all contain the one mandatory letter. Points are assessed based\non word length, and the user tries to obtain as many points as possible,\nachieving different acolades depending on how many points have been acquired.\nEvery game has at least one 'panagram', or word that contains all 7 letters.\n\nSpelling Bee Rules\n\n1. There is at least 1 panagram per game\n2. Words must be at least 4 letters in length\n3. Words cannot be counted more than once\n4. Words must contain mandatory letter\n5. Point System:\n\t4-letters = 1pt\n\t5-letters = 5pt\n\t6-letters = 6pt\n\t...etc.\n\tPanagram = 7 additional points\n6. Player ranking determined by points gained vs. total points possible\n")
+        elif beginning_input == "-t":
+            print("tiers")
+        elif beginning_input == "-w":
+            print("words list")
+        elif beginning_input == "-q":
+            print("quit")
+        else:
+            print("command not recognized")
+            continue
+menu(new_word)
+
+
+        -(R): Print rules of the game
+        -(S): See current score
+        -(Q): Quit out of game, lose progress
+        -(H): Exit help menu
+        -(W): See words successfully submitted thus far
+        -Make a toggle for print statements?'''
+'''
+count = 1
+total_points = 200
+
+good_count = []
+for point in total_points:
+    percent = (count / total_points) * 100
+    if percent > 1:
+        good_count.append(str(count) +"1st")
+        if percent > 3:
+            good_count.append(str(count) +"2nd")
+            if percent > 7:
+                good_count.append(str(count) +"3rd")
+                if percent > 11:
+                    good_count.append(str(count) +"4th")
+                    if percent > 16:
+                        good_count.append(str(count) +"5th")
+                        if percent > 22:
+                            good_count.append(str(count) +"6th")
+    else:
+        count += 1
+percents_i_care_about = [<= 1, > 1 and percent <= 3, > 3 and percent <= 7, > 7 and percent <= 11, > 11 and percent <= 16, > 16 and percent <= 22, > 22 and percent <= 100]
+real_sb_percents = [1.5, 4.5, 7.5, 14, 24, 38, 48, 68]
+fake_total = 273
+for number in real_sb_percents:
+    rank_marker = round((number / 100) * fake_total)
+    #rank_marker = round(rank_marker)
+    print(rank_marker)
+
+words_found = ['last', 'of', 'the', 'mohicans']
+sorted = sorted(words_found)
+print(str(sorted) + "\n")
+
+real_sb_words1 = ['Tailwind', 'Alit', 'Anti', 'Atilt', 'Attain', 'Await', 'Data', 'Dint', 'Initial', 'Lantana', 'Lilt', 'Lint', 'Natal', 'Natant', 'Nitwit', 'Tail', 'Taint', 'Tali', 'Tall', 'Tallit', 'Tannin', 'Tidal', 'Till', 'Tilt', 'Tint', 'Titan', 'Twain', 'Twilit', 'Twill', 'Twin', 'Twit', 'Wait', 'Want', 'Watt', 'wilt']
+real_sb_ranks1 = [0,2,6,10,18,31,49,62,86]
+real_sb_ranks1half = [0,1,5,9,17,30,48,61,85]
+real_sb_total1 = 123
+
+real_sb_words2 = ['Diffract', 'Acrid', 'Adrift', 'Afar', 'Affair', 'Afraid', 'Aircraft','Arcadia', 'Arctic', 'Aria', 'Arid', 'Artifact', 'Atria', 'Attar', 'Attract', 'Carat', 'Card', 'Cardiac', 'Cart', 'Cataract', 'Circa', 'Cirri', 'Citric', 'Craft', 'Critic', 'Dart', 'Diacritic', 'Dirt', 'Draft', 'Drat', 'Drift', 'Fair', 'Farad', 'Fart', 'Frat', 'Friar', 'Frittata', 'Radar', 'Radii', 'Raffia', 'Raft', 'Raid', 'Raita', 'Ratatat', 'Riff', 'Riffraff', 'Rift', 'Tariff', 'Tart', 'Tartar', 'Tiara', 'Tract', 'Traffic', 'Trait', 'Triad']
+real_sb_ranks2 = [0,5,13,21,39,65,104,130,181]
+real_sb_ranks2half = [0,4,12,20,38,64,103,129,180]
+
+real_sb_total2 = 273
+
+count = 0 
+for word in real_sb_words2:
+    count += 1
 print(count)
+
+for rank in real_sb_ranks1half:
+    percentage = (rank / real_sb_total1) * 100
+    print(percentage)
+
+total_points = 0
+
+for new_word in real_sb_words2:
+    new_word_unique_letters = []
+    for letter in new_word:
+        if letter in new_word_unique_letters:
+            pass
+        else:
+            new_word_unique_letters.append(letter)
+    if len(new_word_unique_letters) == 7:
+        new_points = len(new_word) + 7
+    else:
+        if len(new_word) == 4:
+            new_points = 1
+        else:
+            new_points = (len(new_word))
+    total_points += new_points
+    print(new_word + " " + str(new_points))
+print(total_points)'''
+
+#print(rankings[f'count'] + ": " + str(number[f'count']))
+'''
+rankings = ["Born Yesterday", "Pre-K Reading Level", "Somebody knows their ABCs", "Mediocrity ain't half bad (jk)", "High School Reading Level", "I May be in Debt, but I am College Educated", "Congrats on your Master's Thesis, Dweeb", "How long have you been playing this game??", "JACK OF ALL TRADES, MASTER OF ALL TRADES. No More Words Left. What'd You Expect? A Cookie? Go Touch Grass."]
+rank_marker_list = [2,5,8,15,18,27,38,60]
+
+count = 0
+print("Score:  Ranking:\n")
+for number in rank_marker_list:
+    print("  " + str(number) + "\t" + rankings[count])
+    count += 1
+'''
+
+from savefile import save_dict_list
+'''
+if save_dict1 == {}:
+    print("Unsuccessfully pulled")
+else:
+    for values in save_dict1.values():'''
+
+count = 1
+
+for save in save_dict_list:
+    print("\nSave Slot #" + str(count) + "\n")
+    for keys, values in save.items():
+        print(keys + ":", values)
+    count += 1
+
+user_choice = int(input("Which save state do you want to resume?\n"))
+#try:
+choice = save_dict_list[user_choice - 1]
+
+save_state = list(choice.values())
+print(save_state)
