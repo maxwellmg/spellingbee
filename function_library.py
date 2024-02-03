@@ -2,6 +2,39 @@ from random import choice, shuffle
 import time
 from all_words_gamma_list import all_words_gamma_list as dictionary
 from refining_panagrams.checked_panagrams_main import mwd_checked_panagrams
+from savefile import save_dict_list
+
+def check_save_file():
+    if save_dict_list == {}:
+        return None
+    else:
+        if len(save_dict_list) == 1:
+            save_input = str(input("There is a save file from your last play. Would you like to Continue or Start a New Game?\n\n1: Continue Game\n2: Start New Game\n\n"))
+        else:
+            save_input = str(input("There are multiple save files from previous plays. Would you like to Continue a Game or Start a New Game?\n\n1: Continue Game\n2: Start New Game\n\n"))
+    while True:
+        if save_input == "1":
+            count = 1
+            for save in save_dict_list:
+                print("\nSave Slot #" + str(count) + "\n")
+                for keys, values in save.items():
+                    print(keys + ":", values)
+                count += 1
+            while True:
+                user_choice = int(input("Which save state do you want to resume?\n"))
+                if type(user_choice) == int:    
+                    if (int(user_choice) > 0) and (int(user_choice)<= len(save_dict_list)):
+                        choice = save_dict_list[user_choice - 1]
+                        save_state = list(choice.values())
+                        return(save_state)
+                    else:
+                        print("Please enter a valid number")
+                else:
+                    print("Please enter a valid number")
+        elif save_input == "2":
+            return None
+        else:
+            print("Please select either Continue or New Game")
 
 # generate_game() randomly selects a panagram, a mandatory letter within that panagram, and a list of unique letters within the word
 
@@ -160,36 +193,45 @@ def ranking_finder(good_words):
 
 def ranking_assessor(highest_possible_score, current_score):
     percents = [1.5, 4.5, 7.5, 14, 24, 38, 48, 68]
-    rank_marker_list = []
+    rank_marker_list = ["0"]
     for number in percents:
         rank_marker = round((number / 100) * highest_possible_score)
         rank_marker_list.append(rank_marker)
     
-    rankings = ["Born Yesterday", "Pre-K Reading Level", "Somebody knows their ABCs", "Mediocrity ain't half bad (jk)", "High School Reading Level", "I May be in Debt, but I am College Educated", "Congrats on your Master's Thesis, Dweeb", "How long have you been playing this game??", "JACK OF ALL TRADES, MASTER OF ALL TRADES. No More Words Left. What'd You Expect? A Cookie? Go Touch Grass."]
+    rankings = ["Born Yesterday", "Pre-K Reading Level", "Somebody knows their ABCs", "Hooked on Phonics", "Mediocrity ain't half bad (jk)", "High School Reading Level", "I May be in Debt, but I am College Educated", "Congrats on your Master's Thesis, Dweeb", "How long have you been playing this game??", "JACK OF ALL TRADES, MASTER OF ONE. No More Words Left. What'd You Expect? A Cookie? Go Touch Grass."]
 
     if current_score == 0:
-        ranking = "N/A"
+        ranking = "Born Yesterday"
     else:
-        if current_score < rank_marker_list[0]:
-            ranking = rankings[0]
-        elif current_score >= rank_marker_list[0]:
-            ranking = rankings[1]
-        elif current_score >= rank_marker_list[1]:
-            ranking = rankings[2]
-        elif current_score >= rank_marker_list[2]:
-            ranking = rankings[3]
-        elif current_score >= rank_marker_list[3]:
-            ranking = rankings[4]
-        elif current_score >= rank_marker_list[4]:
-            ranking = rankings[5]
-        elif current_score >= rank_marker_list[5]:
-            ranking = rankings[6]
-        elif current_score >= rank_marker_list[6]:
-            ranking = rankings[7]
-        elif current_score >= rank_marker_list[7]:
-            ranking = rankings[8] 
-        elif current_score == highest_possible_score:
+        if current_score == highest_possible_score:
             ranking = rankings[9]
+        elif current_score >= rank_marker_list[8]:
+            ranking = rankings[8]
+        elif current_score >= rank_marker_list[7]:
+            ranking = rankings[7]
+        elif current_score >= rank_marker_list[6]:
+            ranking = rankings[6]
+        elif current_score >= rank_marker_list[5]:
+            ranking = rankings[5]
+        elif current_score >= rank_marker_list[4]:
+            ranking = rankings[4]
+        elif current_score >= rank_marker_list[3]:
+            ranking = rankings[3]
+        elif current_score >= rank_marker_list[2]:
+            ranking = rankings[2]
+        elif current_score >= rank_marker_list[1]:
+            ranking = rankings[1]
+        else:
+            ranking = rankings[0]
+        
+        
+        
+        
+        
+        
+        
+        
+
     return [ranking, rank_marker_list, rankings]
 
 # loading_prompt picks a random print statement for the opening sequence to improve overall user experience
