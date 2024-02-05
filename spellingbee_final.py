@@ -1,6 +1,5 @@
 import time
 from function_library import check_save_file, generate_game, find_all_internal_words, loading_prompt, print_letters, guess_checker, ranking_finder, ranking_assessor, print_recent_inputted_words
-#from savefile import save_dict1 
 
 print("\n + ~~~~~~~~~~~~~~~~~~~~~ + \n |  Python Spelling Bee  | \n + ~~~~~~~~~~~~~~~~~~~~~ + \n ")
 time.sleep(1)
@@ -26,17 +25,17 @@ if previous_save == None:
     print("Generating Scoring System...\n\n")
     time.sleep(0.7)
 else:
-    variables = test[0]
+    variables = previous_save[0]
     good_words = find_all_internal_words(variables)
-    words_found = test[1]
+    words_found = previous_save[1]
     highest_possible_score = ranking_finder(good_words)
     for word in words_found:
         good_words.remove(word)
-    score = test[2]
+    score = previous_save[2]
     count_words_found = len(words_found)
     print("\nWelcome Back! We missed you\n")
     time.sleep(1)
-    
+
 print('Input "-h" to See the Help Menu\n\n')
 time.sleep(1.4)
 
