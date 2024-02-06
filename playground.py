@@ -264,13 +264,14 @@ for number in rank_marker_list:
     print("  " + str(number) + "\t" + rankings[count])
     count += 1
 '''
-
+'''
 from savefile import save_dict_list
+'''
 '''
 if save_dict1 == {}:
     print("Unsuccessfully pulled")
 else:
-    for values in save_dict1.values():'''
+    for values in save_dict1.values():
 
 count = 1
 
@@ -285,4 +286,143 @@ user_choice = int(input("Which save state do you want to resume?\n"))
 choice = save_dict_list[user_choice - 1]
 
 save_state = list(choice.values())
-print(save_state)
+print(save_state)'''
+import json
+
+test = open('savefile.json', 'a')
+variables = ['E', ['R', 'T', 'P', 'A', 'O', 'N']],
+words_found = ['PEAN', 'TEAR', 'NEAR'],
+score = 10
+
+#new_save_dict = {"letters": variables,"words_found": words_found,"score": score}
+'''
+new_save_dict = {
+    "letters": ['E', ['R', 'T', 'P', 'A', 'O', 'N']],
+    "words_found": ['PEAN', 'TEAR', 'NEAR'],
+    "score": 10
+}
+
+
+with open("savefile.py", "r") as savefile:
+    previous_saves = savefile.readlines()
+
+#print(type(previous_saves))
+
+#json_string = json.dumps(new_save_dict)
+
+#previous_saves.append(json_string)
+
+previous_saves.append(new_save_dict)
+
+#print(type(previous_saves))
+print(previous_saves)'''
+
+## TEST ##
+
+'''with open("test.py", "r") as f:
+    contents = f.readlines()
+
+new_save_dict = ", {'letters': ['E', ['R', 'T', 'P', 'A', 'O', 'N']], 'words_found': ['PEAN', 'TEAR', 'NEAR'],'score': 12}"
+
+count = 0
+for substance in contents:
+    for item in substance:
+        print("count " + str(count))
+        #print(item)
+        count +=1
+string = "!!!!"
+contents.insert(1, string)
+#contents.insert(1, new_save_dict)
+
+with open("test.py", "w") as f:
+    contents = "".join(contents)
+    f.write(contents)
+f.close()'''
+
+#import savefile as saves
+'''
+with open("savefile.json") as f:
+    data = json.load(f)
+
+new_save_dict = {'letters': ['E', ['R', 'T', 'P', 'A', 'O', 'N']], 'words_found': ['PEAN', 'TEAR', 'NEAR'],'score': 14}
+
+data.append(new_save_dict)
+#print(data)
+
+
+with open("savefile.json", "w") as f:
+    json.dump(data, f)
+f.close()
+'''
+'''
+replacement_file = []
+
+
+
+for save in saves:
+    replacement_file.append(save)
+replacement_file.append(new_save_dict)
+
+#print(save_dicts)
+
+print(replacement_file)
+
+with open("test.py", "w") as f:
+    #for save in replacement_file:
+    f.write(json.dumps(replacement_file))
+f.close()'''
+
+'''
+from test import save_dicts
+count = 1
+for save in save_dicts:
+    if save == {}:
+        pass
+    else:
+        print("\nSave Slot #" + str(count) + "\n")
+        for keys, values in save.items():
+            print(keys + ":", values)
+        count += 1'''
+
+'''
+    
+from test import save_dicts
+
+#print(save_dicts[1])
+#print(len(save_dicts))
+
+#print("previous_saves: " + previous_saves)
+
+#json_string = json.dumps(previous_saves)
+#print("json_string: " + json_string)
+'''
+
+'''with open("savefile.py", "w") as savefile:
+    for save in previous_saves:
+        for variable, state in save.items():
+            savefile.write(variable, state)
+savefile.close()'''
+'''
+json_string = json.dumps(new_save_dict)
+
+with open("savefile.json", "w") as f:
+    json.dump(json_string, f, indent=4, separators=(", ", ": "), sort_keys=True)
+f.close()'''
+'''
+#parse_obj = json.parse(new_save_dict)
+#parse_obj['save_dict_list'].push('new_Save_dict')
+json_string = json.dumps(new_save_dict)
+json.dump(json_string, test)
+
+test.close()
+#from savefile import save_dict_list
+'''
+'''
+with open("savefile.py", "a") as f:
+    save_dict_list.append(new_save_dict)
+f.close()
+#save_dict_list.append(new_save_dict)'''
+
+
+import time
+print (time.strftime("%m/%d/%Y %H:%M"))

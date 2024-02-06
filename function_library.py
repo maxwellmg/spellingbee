@@ -3,16 +3,12 @@ from random import choice, shuffle
 import time
 from all_words_gamma_list import all_words_gamma_list as dictionary
 from refining_panagrams.checked_panagrams_main import mwd_checked_panagrams
-#from savefile import save_dict_list
-#from test import save_dicts
 
 # check_save_file checks if a previous game was saved in an outfile, and prompts the user to either start a new game or continue a previous run (and allows for unlimited save spots)
 
 def check_save_file():
     with open("savefile.json") as savefile:
         save_dicts = json.load(savefile)
-    '''with open("test.json") as savefile:
-        save_dicts = json.load(savefile)'''
     if save_dicts == [{}]:
         return None
     else:
@@ -31,20 +27,26 @@ def check_save_file():
                         for keys, values in save.items():
                             print(keys + ":", values)
                         count += 1
+                        time.sleep(0.5)
                 while True:
+                    selection = input('\nSelect the Number of the Save Slot you would like to Resume, or input "n" for a New Game\n\n')
                     try:
-                        user_choice = int(input("\nWhich save state do you want to resume?\n"))
+                        user_choice = int(selection)
                         #type(user_choice) == int:
                         if (int(user_choice) > 0) and (int(user_choice)<= len(save_dicts)):
                             choice = save_dicts[user_choice]
                             save_state = list(choice.values())
-                            return(save_state)
+                            return(save_state, user_choice)
                         else:
-                            print("\nPlease enter a valid number")
+                            print('\nPlease enter a valid number, or "n" for a New Game\n')
                             continue
                     except ValueError:
-                        print("Please enter a valid number")
-                        continue
+                        if selection == "n":
+                            print("\n")
+                            return None
+                        else:
+                            print("Please enter a valid number")
+                            continue
                     #else:
                         #print("Please enter a valid number")
             elif save_input == "2":
@@ -73,7 +75,7 @@ def generate_game():
 
 def find_all_internal_words(variables):
     chosen_mandatory_letter = variables[0]
-    unique_letters = variables[1]
+    unique_letters = variables[1]  
     all_letters = unique_letters
     all_letters.append(chosen_mandatory_letter)
     good_words = []
@@ -91,6 +93,7 @@ def find_all_internal_words(variables):
                 good_words.append(word)
             else:
                 pass
+    unique_letters.remove(chosen_mandatory_letter)      
     return good_words
 
 # print_letters creates the print statement for the unique letters of the panagram
@@ -122,7 +125,7 @@ def points_system(new_word):
 
 # guess_checker checks validity of the new inputted word from the user. it returns None if there is an error with the word (i.e. too short, already inputted, contains non-viable letters, etc.) or it sends the word to the points_system function if its a good word.
 
-def guess_checker(new_word, variables, words_found, good_words, score, highest_possible_score, ranking_variables):
+def guess_checker(new_word, variables, words_found, good_words, score, highest_possible_score, ranking_variables, user_choice):
     #return [ranking, rank_marker_list, rankings]
     #ranking = ranking_variables[0]
     new_word = new_word.upper()
@@ -130,7 +133,7 @@ def guess_checker(new_word, variables, words_found, good_words, score, highest_p
     chosen_mandatory_letter = variables[0]
     unique_letters = variables[1]
     if new_word.startswith("-") == True:
-        return help_menu(variables, new_word, words_found, score, highest_possible_score, good_words, ranking_variables)
+        return help_menu(variables, new_word, words_found, score, highest_possible_score, good_words, ranking_variables, user_choice)
     else:    
         for letter in new_word:
             #if letter not in chosen_panagram:
@@ -159,7 +162,7 @@ def guess_checker(new_word, variables, words_found, good_words, score, highest_p
 
 #help_menu allows the user to use "-" commands look up rules, tiers, words_entered, and shuffle, or to break out of the normal guess_checker function into the help menu and complete those same functions
 
-def help_menu(variables, new_word, words_found, score, highest_possible_score, good_words, ranking_variables):
+def help_menu(variables, new_word, words_found, score, highest_possible_score, good_words, ranking_variables, user_choice):
     unique_letters = variables[1]
     ranking = ranking_variables[0]
     rank_marker_list = ranking_variables[1]
@@ -173,11 +176,13 @@ def help_menu(variables, new_word, words_found, score, highest_possible_score, g
         help_tiers(rank_marker_list, rankings)
     elif (beginning_input == "-w") or (beginning_input == "-words_list"):
         help_words_list(words_found)
+    elif (beginning_input == "-c") or (beginning_input == "-clean"):
+        help_clean_savefile()
     elif (beginning_input == "-q") or (beginning_input == "-quit"):
-        return quitting_prompt(variables, words_found, score, highest_possible_score, good_words, ranking)
+        return quitting_prompt(variables, words_found, score, highest_possible_score, good_words, ranking, user_choice)
     elif (beginning_input == "-h") or (beginning_input == "-help"):
         while True:
-            beginning_input = input("Help menu:\n\n-E: Exit Help Menu\n-S: Shuffle Letters (and Exit Help Menu)\n-R: See Rules\n-T: See Tier Rankings\n-W: See All Successful Word Attempts\n-Q: Quit Game\n\n")
+            beginning_input = input("Help menu:\n\n-E: Exit Help Menu\n-S: Shuffle Letters (and Exit Help Menu)\n-R: See Rules\n-T: See Tier Rankings\n-W: See All Successful Word Attempts\n-C: Clean Save File\n-Q: Quit Game\n\n")
             if (beginning_input == "-e") or (beginning_input == "-exit") or (beginning_input == "e"):
                 print("\nExiting Help Menu\n")
                 time.sleep(1)
@@ -190,8 +195,10 @@ def help_menu(variables, new_word, words_found, score, highest_possible_score, g
                 help_tiers(rank_marker_list, rankings)
             elif (beginning_input == "-w") or (beginning_input == "-words_list") or (beginning_input == "w"):
                 help_words_list(words_found)
+            elif (beginning_input == "-c") or (beginning_input == "-clean") or (beginning_input == "c"):
+                help_clean_savefile()
             elif (beginning_input == "-q") or (beginning_input == "-quit") or (beginning_input == "q"):
-                return quitting_prompt(variables, words_found, score, highest_possible_score, good_words, ranking)
+                return quitting_prompt(variables, words_found, score, highest_possible_score, good_words, ranking, user_choice)
             else:
                 print("\nCommand not recognized")
                 time.sleep(1)
@@ -277,18 +284,32 @@ def print_recent_inputted_words(words_found):
 
 # quitting_prompt takes user through options for quitting the game, allowing for mistaken quits to be avoided and for all answers to be revealed
 
-def quitting_prompt(variables, words_found, score, highest_possible_score, good_words, ranking):
+def quitting_prompt(variables, words_found, score, highest_possible_score, good_words, ranking, user_choice):
     while True:
         quitting_input = input("\nAre You Sure You Want to Quit? (Y/N)\n\n")
         if quitting_input.lower() == "y" or quitting_input.lower() == "yes":
             while True:
                 second_quitting_input = input("\nWould you like to save and return later? (Y/N)\n\n")
                 if (second_quitting_input.lower() == "y") or (second_quitting_input.lower() == "yes"):
-                    create_new_save(variables, words_found, score)
-                    print("\nSaving...\n")
-                    time.sleep(1)
-                    print("Saved! Looking forward to next time\n")
-                    return "quit"
+                    while True:
+                        if user_choice == None:
+                            create_new_save(variables, words_found, score)
+                            print("\nSaving...\n")
+                            time.sleep(1)
+                            print("Saved! Looking forward to next time\n")
+                            return "quit"
+                        third_quitting_input = input("\nWould you like to Overwrite Save File or Save a New File?\n\nO: Overwrite File\nN: New File\n\n")
+                        if (third_quitting_input.lower() == "o") or (third_quitting_input.lower() == "overwrite") or (third_quitting_input.lower() == "overwrite file"):
+                            overwrite_save(variables, words_found, score, user_choice)
+                        elif (third_quitting_input.lower() == "n") or (third_quitting_input.lower() == "new") or (third_quitting_input.lower() == "new file"):
+                            create_new_save(variables, words_found, score)
+                            print("\nSaving...\n")
+                            time.sleep(1)
+                            print("Saved! Looking forward to next time\n")
+                            return "quit"
+                        else:
+                            print('\nChoice not recognized. Input "c" to cancel quitting.')
+                            time.sleep(1)
                 elif (second_quitting_input.lower() == "n") or (second_quitting_input.lower() == "no"):
                     #choice = "n"
                     return closing_printout(words_found, score, highest_possible_score, good_words, ranking)
@@ -361,15 +382,79 @@ def help_shuffle(unique_letters):
     print("\nShuffling Letters\n")
     time.sleep(1)
 
+# help_clean_savefile allows user to choose previous save states to erase from the savefile
+
+def help_clean_savefile():
+    print("\nClean Save File\n")
+    time.sleep(1)
+    with open("savefile.json") as savefile:
+        save_dicts = json.load(savefile)
+    if save_dicts == [{}]:
+        print("There are no Save Files to erase at this time")
+        return None
+    count = 1
+    for save in save_dicts:
+        if save == {}:
+            continue
+        else:
+            print("\nSave Slot #" + str(count) + "\n")
+            for keys, values in save.items():
+                print(keys + ":", values)
+            count += 1
+            time.sleep(0.5)
+    while True:
+        user_input = input('\nPlease select a savefile to delete, or input "e" to return\n\n')
+        try:
+            deletion_choice = int(user_input)
+            if (deletion_choice > 0) and (deletion_choice <= len(save_dicts)):
+                print(f"\nSave Slot #{deletion_choice} has been selected\n\n" + str(save_dicts[deletion_choice]))
+                time.sleep(1)
+                while True:
+                    new_input = input("\nAre you sure you want to delete? (Y/N)\n\n")
+                    if (new_input.lower() == "y") or (new_input.lower() == "yes"):
+                        choice = save_dicts[deletion_choice]
+                        save_dicts.remove(choice)
+                        with open("savefile.json", "w") as f:
+                            json.dump(save_dicts, f)
+                        f.close()
+                        print(f"\nSave Slot #{deletion_choice} has been deleted. \n")
+                        time.sleep(1)
+                        break
+                    elif (new_input.lower() == "n") or (new_input.lower() == "no"):
+                        print(f"\nNot deleting Save Slot #{deletion_choice}\n")
+                        break
+                    else:
+                        print("\nPlease choose to delete (Y), or not to delete (N)\n")
+                        time.sleep(0.5)
+        except:
+            ValueError
+            if user_input.lower() == "e":
+                #continue
+                print("\nReturning\n")
+                time.sleep(1)
+                break
+            else:
+                print('\nPlease a savefile to delete, or input "e" to return\n')
+        
 # create_new_save stores letters, words found, and score from your current game in an outfile that can be accessed at the beginning of the program
 
 def create_new_save(variables, words_found, score):
     with open("savefile.json") as f:
         data = json.load(f)
-
-    new_save_dict = {'letters': variables, 'words_found': words_found, 'score': score}
+    new_save_dict = {'letters': variables, 'words_found': words_found, 'score': score, 'last updated': time.strftime("%m/%d/%Y %H:%M")}
     data.append(new_save_dict)
+    with open("savefile.json", "w") as f:
+        json.dump(data, f)
+    f.close()
 
+# overwrite_save unlike create_new_save, takes the additional variable of user_choice given when the save state was selected to remove that file as it saves the new file
+
+def overwrite_save(variables, words_found, score, user_choice):
+    with open("savefile.json") as f:
+        data = json.load(f)
+    new_save_dict = {'letters': variables, 'words_found': words_found, 'score': score, 'last updated': time.strftime("%m/%d/%Y %H:%M")}
+    data.remove(user_choice)
+    data.append(new_save_dict)
     with open("savefile.json", "w") as f:
         json.dump(data, f)
     f.close()

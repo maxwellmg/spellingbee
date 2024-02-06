@@ -6,8 +6,8 @@ To Run Program:
  - Enjoy!
 
 To Exit, either:
-- Input CTRL + C to force quit the program, or
-- Input -q to begin the quitting procedure
+- Input -q to begin the quitting procedure (RECOMMENDED) or
+- Input CTRL + C to force quit the program
 
 Spelling Bee Description
     NYT offers this app to subscribers and offers one unique set of letters per day. This version replicates the core functionality with the added ability to play unlimited run-throughs.
@@ -29,10 +29,11 @@ Spelling Bee Rules
 6. Accolades achieved based on points gained are proportional based on how many points are possible in a game.
 
 Scoring Tiers (calculated as a percentage from Points Obtained / Total Points Available)
-No Rank/Tier 0 - 0%
-Tier 1 - 1-3%
-Tier 2 - 3-7%
-Tier 3 - 7-11%
-Tier 4 - 11-16%
-Tier 5 - 16-22%
-Tier 6 - 22-100%
+Tier 0: 0 >= Score < 1.5%
+Tier 1: 1.5 >= Score < 4.5%
+Tier 2: 4.5 >= Score < 7.5%
+Tier 3: 7.5 >= Score < 14%
+Tier 4: 14 >= Score < 24%
+Tier 5: 24 >= Score < 38%
+Tier 6: 38 >= Score < 48%
+Tier 7: 48 >= Score < 68%
