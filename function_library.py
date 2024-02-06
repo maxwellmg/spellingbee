@@ -31,8 +31,9 @@ def check_save_file():
                         for keys, values in save.items():
                             print(keys + ":", values)
                         count += 1
+                        time.sleep(0.5)
                 while True:
-                    selection = input('\nSelect the Number of the Save you would like to Resume, or input "n" for a New Game\n\n')
+                    selection = input('\nSelect the Number of the Save Slot you would like to Resume, or input "n" for a New Game\n\n')
                     try:
                         user_choice = int(selection)
                         #type(user_choice) == int:
@@ -385,7 +386,7 @@ def help_shuffle(unique_letters):
 def create_new_save(variables, words_found, score):
     with open("savefile.json") as f:
         data = json.load(f)
-    new_save_dict = {'letters': variables, 'words_found': words_found, 'score': score}
+    new_save_dict = {'letters': variables, 'words_found': words_found, 'score': score, 'last updated': time.strftime("%m/%d/%Y %H:%M")}
     data.append(new_save_dict)
     with open("savefile.json", "w") as f:
         json.dump(data, f)
@@ -396,7 +397,7 @@ def create_new_save(variables, words_found, score):
 def overwrite_save(variables, words_found, score, user_choice):
     with open("savefile.json") as f:
         data = json.load(f)
-    new_save_dict = {'letters': variables, 'words_found': words_found, 'score': score}
+    new_save_dict = {'letters': variables, 'words_found': words_found, 'score': score, 'last updated': time.strftime("%m/%d/%Y %H:%M")}
     data.remove(user_choice)
     data.append(new_save_dict)
     with open("savefile.json", "w") as f:
