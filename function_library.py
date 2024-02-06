@@ -32,19 +32,24 @@ def check_save_file():
                             print(keys + ":", values)
                         count += 1
                 while True:
+                    selection = input('\nSelect the Number of the Save you would like to Resume, or input "n" for a New Game\n\n')
                     try:
-                        user_choice = int(input("\nWhich save state do you want to resume?\n"))
+                        user_choice = int(selection)
                         #type(user_choice) == int:
                         if (int(user_choice) > 0) and (int(user_choice)<= len(save_dicts)):
                             choice = save_dicts[user_choice]
                             save_state = list(choice.values())
                             return(save_state, user_choice)
                         else:
-                            print("\nPlease enter a valid number")
+                            print('\nPlease enter a valid number, or "n" for a New Game\n')
                             continue
                     except ValueError:
-                        print("Please enter a valid number")
-                        continue
+                        if selection == "n":
+                            print("\n")
+                            return None
+                        else:
+                            print("Please enter a valid number")
+                            continue
                     #else:
                         #print("Please enter a valid number")
             elif save_input == "2":
