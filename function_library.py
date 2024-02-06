@@ -1,8 +1,8 @@
 import json
 from random import choice, shuffle
 import time
-from all_words_gamma_list import all_words_gamma_list as dictionary
-from refining_panagrams.checked_panagrams_main import mwd_checked_panagrams
+from dictionary import dictionary
+from panagrams import checked_panagrams
 
 # check_save_file checks if a previous game was saved in an outfile, and prompts the user to either start a new game or continue a previous run (and allows for unlimited save spots)
 
@@ -59,7 +59,7 @@ def check_save_file():
 # generate_game randomly selects a panagram, a mandatory letter within that panagram, and a list of unique letters within the word
 
 def generate_game():
-    chosen_panagram = choice(mwd_checked_panagrams)
+    chosen_panagram = choice(checked_panagrams)
     chosen_mandatory_letter = choice(chosen_panagram)
     unique_letters = []
     all_but = chosen_panagram.replace(chosen_mandatory_letter, "")
