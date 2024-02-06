@@ -3,8 +3,6 @@ from random import choice, shuffle
 import time
 from all_words_gamma_list import all_words_gamma_list as dictionary
 from refining_panagrams.checked_panagrams_main import mwd_checked_panagrams
-#from savefile import save_dict_list
-#from test import save_dicts
 
 # check_save_file checks if a previous game was saved in an outfile, and prompts the user to either start a new game or continue a previous run (and allows for unlimited save spots)
 
@@ -77,7 +75,7 @@ def generate_game():
 
 def find_all_internal_words(variables):
     chosen_mandatory_letter = variables[0]
-    unique_letters = variables[1]
+    unique_letters = variables[1]  
     all_letters = unique_letters
     all_letters.append(chosen_mandatory_letter)
     good_words = []
@@ -95,6 +93,7 @@ def find_all_internal_words(variables):
                 good_words.append(word)
             else:
                 pass
+    unique_letters.remove(chosen_mandatory_letter)      
     return good_words
 
 # print_letters creates the print statement for the unique letters of the panagram
