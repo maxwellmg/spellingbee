@@ -32,7 +32,6 @@ def check_save_file():
                     selection = input('\nSelect the Number of the Save Slot you would like to Resume, or input "n" for a New Game\n\n')
                     try:
                         user_choice = int(selection)
-                        #type(user_choice) == int:
                         if (int(user_choice) > 0) and (int(user_choice)<= len(save_dicts)):
                             choice = save_dicts[user_choice]
                             save_state = list(choice.values())
@@ -47,8 +46,6 @@ def check_save_file():
                         else:
                             print("Please enter a valid number")
                             continue
-                    #else:
-                        #print("Please enter a valid number")
             elif save_input == "2":
                 print("\n")
                 return None
@@ -99,8 +96,6 @@ def find_all_internal_words(variables):
 # print_letters creates the print statement for the unique letters of the panagram
 
 def print_letters(chosen_mandatory_letter, unique_letters):
-    #chosen_mandatory_letter = variables[1]
-    #unique_letters = variables[2]
     print("    " + unique_letters[0] + "     " + unique_letters[1] + "\n\n" + unique_letters[2] + "     [" + chosen_mandatory_letter + "]     " + unique_letters[3] + "\n\n    " + unique_letters[4] + "     " + unique_letters[5] + "\n")
 
 # points_system takes the argument of a new valid word and determines its value and corresponding print statement
@@ -126,21 +121,16 @@ def points_system(new_word):
 # guess_checker checks validity of the new inputted word from the user. it returns None if there is an error with the word (i.e. too short, already inputted, contains non-viable letters, etc.) or it sends the word to the points_system function if its a good word.
 
 def guess_checker(new_word, variables, words_found, good_words, score, highest_possible_score, ranking_variables, user_choice):
-    #return [ranking, rank_marker_list, rankings]
-    #ranking = ranking_variables[0]
     new_word = new_word.upper()
-    #chosen_panagram = variables[0]
     chosen_mandatory_letter = variables[0]
     unique_letters = variables[1]
     if new_word.startswith("-") == True:
         return help_menu(variables, new_word, words_found, score, highest_possible_score, good_words, ranking_variables, user_choice)
     else:    
         for letter in new_word:
-            #if letter not in chosen_panagram:
             if (letter not in unique_letters) and (letter != chosen_mandatory_letter):
                 print("\nContains non-viable letter (" + letter.upper() + ")\n")
                 return None
-                #break
             else:
                 pass
         if len(new_word) < 4:
@@ -210,7 +200,6 @@ def help_menu(variables, new_word, words_found, score, highest_possible_score, g
 # ranking_finder takes the argument of the good word list and finds the highest possible score for the round
 
 def ranking_finder(good_words):
-    #needs to find total number of points available per round (see panagrams, normal words)
     highest_possible_score = 0
     for word in good_words:
         int_points = int(points_system(word)[0])
@@ -311,7 +300,6 @@ def quitting_prompt(variables, words_found, score, highest_possible_score, good_
                             print('\nChoice not recognized. Input "c" to cancel quitting.')
                             time.sleep(1)
                 elif (second_quitting_input.lower() == "n") or (second_quitting_input.lower() == "no"):
-                    #choice = "n"
                     return closing_printout(words_found, score, highest_possible_score, good_words, ranking)
                 elif (second_quitting_input.lower() == "c"):
                     print("\nBack to the game\n")
@@ -429,12 +417,12 @@ def help_clean_savefile():
         except:
             ValueError
             if user_input.lower() == "e":
-                #continue
                 print("\nReturning\n")
                 time.sleep(1)
                 break
             else:
                 print('\nPlease a savefile to delete, or input "e" to return\n')
+                time.sleep(0.5)
         
 # create_new_save stores letters, words found, and score from your current game in an outfile that can be accessed at the beginning of the program
 

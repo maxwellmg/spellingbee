@@ -42,20 +42,11 @@ unique_letters = variables[1]
 print('Input "-h" to See the Help Menu\n\n')
 time.sleep(1.4)
 
-'''
-variables = generate_game()
-
-good_words = find_all_internal_words(variables)
-
-#highest_possible_score = ranking_finder(good_words)'''
-
 while True:
     ranking_variables = ranking_assessor(highest_possible_score, score)
     current_rank = ranking_variables[0]
     recent_word_list = print_recent_inputted_words(words_found)
     print("Words Found: " + str(count_words_found) + "\t Score: " + str(score) + "\t Ranking: " + current_rank + "\n\n" + recent_word_list + "\n")
-    '''chosen_mandatory_letter = variables[0]
-    unique_letters = variables[1]'''
     print_letters(chosen_mandatory_letter, unique_letters)
     new_word = input("Your guess: ")
     current_guess = guess_checker(new_word, variables, words_found, good_words, score, highest_possible_score, ranking_variables, user_choice = None)
