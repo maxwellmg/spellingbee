@@ -12,7 +12,7 @@ To Exit, either:
 Spelling Bee Description
     NYT offers this app to subscribers and offers one unique set of letters per day. This version replicates the core functionality with the added ability to play unlimited run-throughs.
     
-    Gameplay:
+Gameplay:
     The user is provided 7 different letters, one of which is a [mandatory letter]. The user tries to find as many unique words as possible with the letters given so long as they all contain the one mandatory letter. Points are assessed based on word length, and the user tries to obtain as many points as possible, achieving different acolades depending on how many points have been acquired. Every game has at least one "panagram", or word that contains all 7 letters. 
 
 Spelling Bee Rules
